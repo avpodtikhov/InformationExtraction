@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <div class="row" style="display: flex; justify-content: center; align-items: center; height: 90vh">
+        <div class="col-md-4">
+            <h1 align="center">Вход</h1>
+            {{ wtf.quick_form(form) }}
+            <p align="right"><a href="{{ url_for('register') }} ">Регистрация</a></p>
+        </div>
+    </div>
+{% endblock %}

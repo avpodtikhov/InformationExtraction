@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col-sm-6"><div align='left'><a href="{{ url_for('index')}}">Назад</a></div></div>
+</div>
+    <h1>Пользователь: {{ current_user.username }}</h1>
+    <h2>Админская панель</h1>
+    <hr>
+    <li>Колличество пользователей: {{ models.User.query.count() }}</li>
+    <li>Всего документов размечено: <span id = 'total_docs'>0</span></li>
+    <li>Всего документов согласовано: <span id = 'total_index'>0</span></li>
+    <a><i>Подробная статистика по пользователям</i></a>
+    <br>
+    <a><i>Подробная статистика по документам</i></a>
+
+{% endblock %}

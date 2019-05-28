@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row" style="display: flex; justify-content: center; align-items: center; height: 90vh;">
+        <div class="col-md-4" >
+            <h1 align="center">Регистрация</h1>
+            {{ wtf.quick_form(form) }}
+            <p align="right"><a href="{{ url_for('login') }} ">Назад к авторизации</a></p>
+        </div>
+    </div>
+{% endblock %}

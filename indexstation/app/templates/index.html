@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-sm-6">Название документа: <b><span id = "cur_name">Документ не загружен</span></b></div>
+        <div class="col-sm-6" align="right">
+            <a href="{{ url_for('user') }}">{{current_user.username}}</a>
+            <a href="{{ url_for('logout') }}">Выход</a>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="col">
+            <div class="col-sm-8">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#pdf" aria-controls="pdf" role="tab" data-toggle="tab">PDF</a></li>
+                    <li role="presentation"><a href="#txt" aria-controls="txt" role="tab" data-toggle="tab">TXT</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="txt">
+                        <div style="float: none; height:808px; width:730px; overflow: hidden;">
+                            <div id='hide'style="border: 1px solid #fff;word-spacing: 0px; letter-spacing: 0px;position: relative; top:-2px; left:0px;height:808px;width:714px;padding: 6px 12px; white-space: pre-wrap; word-wrap: break-word;overflow: hidden;color: transparent; text-align: start;"><span id='hidden_text'></span></div>
+                        </div>
+                        <textarea class="form-control" rows="40" id="cur_txt" style="position:absolute;top:40px; width:730px; resize:none; background:none; white-space: pre-wrap; word-wrap: break-word;" onscroll="moveDiv()"></textarea>
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id="pdf">
+                        <div id="containerPDF" style="width:100%; height: 809px; overflow-y: scroll; overflow-x: hidden;display: block;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <form class="form" id="form_params">
+                    {% for param in params: %}
+                        {% include '_param.html' %}
+                    {% endfor %}
+                    <p><button type="submit" class="btn btn-default btn-sm btn-block" style="width:100%" id ="submit">Отправить</button></p>
+                </form>
+                <p><button type="button" class="btn btn-primary btn-sm btn-block" onclick="javascript:get_next('#cur_txt', '#cur_name')">Следующий документ</button></p>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id ="additional_cb" onclick="javascript:setAdd('additional_cb', '.add_label')" checked>Показывать доп. параметры
+                </label>
+            </div>
+        </div>
+    </div>
+    <h4 align="center" id = "h4c"style="visibility: hidden;">Следующий документ будет автоматически загружен через: <span id="my_timer">00:16:00</span></h4>
+{% endblock %}

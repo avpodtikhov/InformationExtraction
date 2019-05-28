@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col-sm-6"><div align='left'><a href="{{ url_for('index')}}">Назад</a></div></div>
+    <div class="col-sm-6" align="right">
+        {% if current_user.username == 'admin' %}
+            <a href="{{ url_for('stat') }}">Статистика</a>
+        {% endif %}
+    	<a href="{{ url_for('logout') }}">Выход</a>
+	</div>
+</div>
+    <h1>Пользователь: {{ current_user.username }}</h1>
+    <hr>
+    <p>Ваш текущий рейтинг: {{ current_user.rating }}</p>
+    <li>Всего ответов: 0</li>
+    <li>Правильных ответов: 0</li>
+    <details>
+      <summary>Проверенные документы</summary>
+      {% for r in current_user.res.filter_by(param_id=1).all(): %}
+        <a>{{ r.doc_id }}</a>
+      {% endfor %}
+    </details>
+    <p><i>Изменение пароля:</i></p>
+    {{ wtf.quick_form(form) }}
+{% endblock %}

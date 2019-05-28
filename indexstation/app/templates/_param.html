@@ -1,0 +1,12 @@
+<div class="form-group" has-error>
+    <label class="control-label" for="{{ param.name }}">{{ param.data }}</label>
+    {% if param.type == 'date' %}
+        <input type="text" pattern="(0?[1-9]|[1-2]\d|3[01])(\.|\/|\s|-)(1[012]|0?[1-9]|([яЯ]нв(\.|аря|арь)?)|([фФ]евр(\.|аля|аль)?)|([мМ]ар(\.|та|т)?)|([аА]пр(\.|еля|ель)?)|([мМ]а[йя])|([иИ]юн[яь])|([иИ]юл[ья])|([аА]вг(\.|уста|уста)?)|([сС]ент(\.|ябрь|ября)?)|([оО]кт(\.|ября|ябрь)?)|([нН]ояб(\.|ря|рь)?)|([дД]ек(\.|абря|абрь)?))\2((20)?[01]\d)" title="{{ param.title }}" required class="form-control params" id="{{ param.name }}" name="{{ param.name }}" onclick="javascript:getSel1('#{{ param.name }}', '#{{ param.name }}_pos')" style="cursor:pointer; background-color: white">
+    {% else %}
+        <input type="{{ param.type }}" title="{{ param.title }}" required class="form-control params" id="{{ param.name }}" name="{{ param.name }}" onclick="javascript:getSel('#{{ param.name }}', '#{{ param.name }}_pos')" style="cursor:pointer; background-color: white">
+    {% endif %}
+    <i><span style="position: absolute; right:10px" id="{{ param.name }}_pos" class="add_label"></span></i>
+    <label class="checkbox-inline">
+        <input type="checkbox" id ="{{ param.name }}_cb" onclick="javascript:notInDoc('#{{ param.name }}', '{{ param.name }}_cb', '#{{ param.name }}_pos')"> Отсутсвует
+    </label>
+</div>
